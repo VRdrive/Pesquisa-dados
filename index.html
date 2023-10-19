@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parceiros VRDrive</title>
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        h1,
+        p {
+            font-size: 48px;
+            margin: 0;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #f2f2f2;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input#modelo {
+            font-size: 18px;
+            margin-bottom: 16px;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 18px;
+        }
+
+        .tabela-resultados {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .tabela-resultados th,
+        .tabela-resultados td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .tabela-resultados th {
+            background-color: #f2f2f2;
+        }
+
+        main {
+            margin-top: 120px;
+            /* Ajuste para evitar que o conteúdo fique oculto pelo cabeçalho fixo */
+        }
+
+        #texto-informativo {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Parceiros VRDrive</h1>
+    </header>
+
+    <main>
+        <label for="modelo"></label>
+        <input type="text" id="modelo" placeholder="Digite a placa do carro"
+            onkeydown="if (event.key === 'Enter') pesquisar()">
+        <button onclick="pesquisar()">Pesquisar</button>
+
+        <!-- Adiciona um elemento para o texto informativo -->
+        <p id="texto-informativo">Bem-vindo à página de Parceiros VRDrive! Aqui, você tem a
+            oportunidade de explorar informações sobre nossos motoristas colaboradores.</p>
+
+        <div id="resultado"></div>
+    </main>
+
+    <script>
+        function pesquisar() {
+            var modeloCarro = document.getElementById('modelo').value;
+            var resultadoPesquisa = realizarPesquisa(modeloCarro);
+            exibirResultado(resultadoPesquisa);
+        }
+
+        function realizarPesquisa(modelo) {
+            var dados = [
+                ["GCM4E43", "HONDA HR-v", "CINZA", "ATIVO", "Daniel Lopes de Oliveira"],
+                ["FPY9H36", "HONDA BIZ", "VERMELHA", "ATIVO", "Cintia Aparecida Vicalvi"],
+                ["FPY9H36", "HONDA BIZ", "VERMELHA", "ATIVO", "Cintia Aparecida Vicalvi"],
+                ["FPY9H36", "HONDA BIZ", "VERMELHA", "ATIVO", "Cintia Aparecida Vicalvi"],
+                ["Carro2", "2019", "Vermelho"],
+                // ... mais dados ...
+            ];
+
+            var resultado = dados.filter(function (linha) {
+                return linha.some(function (coluna) {
+                    return coluna.toLowerCase().includes(modelo.toLowerCase());
+                });
+            });
+
+            return resultado;
+        }
+
+        function exibirResultado(resultado) {
+            var resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = '';
+
+            var textoInformativo = document.getElementById('texto-informativo');
+            textoInformativo.innerHTML = '';
+
+            if (resultado.length === 0) {
+                textoInformativo.innerHTML = 'Nenhum resultado encontrado.';
+                return;
+            }
+
+            // Adiciona um texto informativo
+            textoInformativo.innerHTML = 'Resultados da pesquisa:';
+
+            var tabela = document.createElement('table');
+            tabela.className = 'tabela-resultados';
+
+            var cabecalho = document.createElement('tr');
+            for (var i = 0; i < resultado[0].length; i++) {
+                var th = document.createElement('th');
+                th.textContent = resultado[0][i];
+                cabecalho.appendChild(th);
+            }
+            tabela.appendChild(cabecalho);
+
+            // Adiciona uma linha para cada resultado
+            for (var j = 1; j < resultado.length; j++) {
+                var linha = document.createElement('tr');
+                for (var k = 0; k < resultado[j].length; k++) {
+                    var td = document.createElement('td');
+                    td.textContent = resultado[j][k];
+                    linha.appendChild(td);
+                }
+                tabela.appendChild(linha);
+            }
+
+            resultadoDiv.appendChild(tabela);
+        }
+    </script>
+</body>
+
+</html>
