@@ -29,20 +29,55 @@
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
+        main {
+            margin-top: 120px;
+            /* Ajuste para evitar que o conteúdo fique oculto pelo cabeçalho fixo */
+        }
+
+        #login-container {
+            margin: auto;
+            width: 300px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
         label {
             display: block;
             margin-bottom: 8px;
+            text-align: left;
         }
 
-        input#modelo {
-            font-size: 18px;
+        input {
+            width: calc(100% - 16px);
+            padding: 8px;
             margin-bottom: 16px;
-            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
         }
 
         button {
+            width: 100%;
             padding: 10px;
             font-size: 18px;
+            background-color: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        #modelo {
+            font-size: 18px;
+            margin-bottom: 16px;
+            padding: 10px;
         }
 
         .tabela-resultados {
@@ -63,11 +98,6 @@
             background-color: #f2f2f2;
         }
 
-        main {
-            margin-top: 120px;
-            /* Ajuste para evitar que o conteúdo fique oculto pelo cabeçalho fixo */
-        }
-
         #texto-informativo {
             font-size: 20px;
             margin: 20px 0;
@@ -82,12 +112,22 @@
     </header>
 
     <main>
-        <label for="modelo"></label>
-        <input type="text" id="modelo" placeholder="Digite a placa do carro"
-            onkeydown="if (event.key === 'Enter') pesquisar()">
-        <button onclick="pesquisar()">Pesquisar</button>
+        <div id="login-container">
+            <h2>Login</h2>
+            <label for="usuario">Usuário:</label>
+            <input type="text" id="usuario" placeholder="Digite seu usuário">
 
-        <!-- Adiciona um elemento para o texto informativo -->
+            <label for="senha">Senha:</label>
+            <input type="password" id="senha" placeholder="Digite sua senha">
+
+            <button onclick="login()">Login</button>
+        </div>
+
+        <label for="modelo"></label>
+        <input type="text" id="modelo" placeholder="Digite a placa do carro ou nome do Motorista" disabled
+            onkeydown="if (event.key === 'Enter') pesquisar()">
+        <button id="pesquisar" onclick="pesquisar()" disabled>Pesquisar</button>
+
         <p id="texto-informativo">Bem-vindo à página de Parceiros VRDrive! Aqui, você tem a
             oportunidade de explorar informações sobre nossos motoristas colaboradores.</p>
 
@@ -95,6 +135,23 @@
     </main>
 
     <script>
+        function login() {
+            // Adicione aqui a lógica de autenticação
+            var usuario = document.getElementById('usuario').value;
+            var senha = document.getElementById('senha').value;
+
+            // Exemplo de verificação simples (substitua por lógica real)
+            if (usuario === '1234' && senha === '1234') {
+                // Habilita os controles de pesquisa após o login bem-sucedido
+                document.getElementById('modelo').removeAttribute('disabled');
+                document.getElementById('pesquisar').removeAttribute('disabled');
+                // Esconde o contêiner de login
+                document.getElementById('login-container').style.display = 'none';
+            } else {
+                alert('Login falhou. Verifique seu usuário e senha.');
+            }
+        }
+
         function pesquisar() {
             var modeloCarro = document.getElementById('modelo').value;
             var resultadoPesquisa = realizarPesquisa(modeloCarro);
@@ -102,12 +159,17 @@
         }
 
         function realizarPesquisa(modelo) {
+            // Seus dados de motoristas aqui
             var dados = [
-                ["GCM4E43", "HONDA HR-v", "CINZA", "ATIVO", "Daniel Lopes de Oliveira"],
-                ["FPY9H36", "HONDA BIZ", "VERMELHA", "ATIVO", "Cintia Aparecida Vicalvi"],
-                ["FPY9H36", "HONDA BIZ", "VERMELHA", "ATIVO", "Cintia Aparecida Vicalvi"],
-                ["FPY9H36", "HONDA BIZ", "VERMELHA", "ATIVO", "Cintia Aparecida Vicalvi"],
-                ["Carro2", "2019", "Vermelho"],
+                ["Abdenego Cicero Cordeiro", "Nissan/Versa", "QOY3J23", "Bragança Paulista"],
+                ["Acácio Panizza", "Toyota/Corolla", "FCA5H37", "Bragança Paulista"],
+                ["Adail Soares Lima", "Fiat/Mobi", "FWO2G18", "Nova Odessa"],
+                ["Adão Barreto de Freitas", "Fiat/Palio", "GKE9H20", "Bragança Paulista"],
+                ["Adelino Ferreira Dos Santos", "Fiat/Uno", "FCR-4222", "Extrema"],
+                ["Adelmo Camargos Marra", "Fiat/Siena", "QXQ1F14", "Atibaia"],
+                ["Adevaldo Alves Do Nascimento", "Renault/Sandero", "GDO8E74", "Bragança Paulista"],
+                ["Adilson Dos Santos Figueiredo", "Hyundai/Hb20", "FRV-6814", "Bragança Paulista"],
+                ["Adilson Pereira Da Silva", "Chevrolet/Prisma", "FTI-7249", "Bom Jesus dos Perdões"],
                 // ... mais dados ...
             ];
 
