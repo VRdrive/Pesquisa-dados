@@ -152,23 +152,44 @@ button:hover {
 }
 
 /* Estilos para dispositivos móveis */
+/* Estilos para dispositivos móveis */
 @media (max-width: 767px) {
+    body {
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
 
-    h1,
-    p {
+    h1, p {
         font-size: 36px;
+        margin: 0;
+        color: black;
     }
 
     header {
         padding: 8px;
     }
 
+    main {
+        margin-top: 80px; /* Ajuste a margem superior de acordo com seu design */
+    }
+
     #login-container {
         width: 90%;
     }
 
-    input,
-    button {
+    input, button {
         width: 100%;
     }
+
+    .tabela-container {
+        max-height: 300px; /* Ajuste a altura máxima da tabela de acordo com seu design */
+    }
+
+    #modelo, #pesquisar {
+        width: 45%; /* Ajuste a largura dos elementos de acordo com seu design */
+        margin: 5px;
+    }
 }
+
