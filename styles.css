@@ -186,10 +186,5 @@ button:hover {
     .tabela-container {
         max-height: 280px; /* Ajuste a altura máxima da tabela de acordo com seu design */
     }
-
-    #modelo, #pesquisar {
-        width: 45%; /* Ajuste a largura dos elementos de acordo com seu design */
-        margin: 5px;
-    }
 }
 
