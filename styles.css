@@ -176,7 +176,7 @@ button:hover {
     }
 
     #login-container {
-        width: 90%;
+        width: 100%;
     }
 
     input, button {
@@ -184,7 +184,7 @@ button:hover {
     }
 
     .tabela-container {
-        max-height: 300px; /* Ajuste a altura máxima da tabela de acordo com seu design */
+        max-height: 280px; /* Ajuste a altura máxima da tabela de acordo com seu design */
     }
 
     #modelo, #pesquisar {
