@@ -155,7 +155,7 @@ button:hover {
 /* Estilos para dispositivos móveis */
 @media (max-width: 767px) {
     h1, p {
-        font-size: 24px; /* Tamanhos menores para telas pequenas */
+        font-size: 28px; /* Tamanhos menores para telas pequenas */
     }
 
     header {
@@ -163,6 +163,6 @@ button:hover {
     }
 
     #login-container {
-        width: 95%; /* Largura maior para telas pequenas */
+        width: 90%; /* Largura maior para telas pequenas */
     }
 }
