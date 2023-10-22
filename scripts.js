@@ -28,8 +28,7 @@ function login() {
         })
         .catch((error) => {
             // Em caso de falha na autenticação
-            var errorMessage = error.message;
-            alert('Login inválido. ' + errorMessage);
+            alert('Login inválido. Verifique seu e-mail e senha');
         });
 }
 
